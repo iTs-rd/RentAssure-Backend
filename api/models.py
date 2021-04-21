@@ -1,5 +1,5 @@
 from django.db import models
-
+from PIL import Image
 
 # test model to upload images
 
@@ -36,6 +36,28 @@ class House(models.Model):
     agreement_duration = models.IntegerField()     # no of months
     description = models.TextField(max_length=360)
 
+    def save(self, ** kwargs):
+        super().save()
+        image1=Image.open(self.img1.path)
+        new_img1= image1.resize((350,300))
+        print(image1.size)
+        print(new_img1.size)
+        new_img1.save(self.img1.path)
+
+        image2=Image.open(self.img2.path)
+        new_img2= image2.resize((350,300))
+        new_img2.save(self.img2.path)
+
+        image3=Image.open(self.img3.path)
+        new_img3= image3.resize((350,300))
+        new_img3.save(self.img3.path)
+
+        image4=Image.open(self.img4.path)
+        new_img4= image4.resize((350,300))
+        new_img4.save(self.img4.path)
+
+
+
 class Room(models.Model):
     title = models.CharField(max_length=32)
 
@@ -67,6 +89,28 @@ class Room(models.Model):
     description = models.TextField(max_length=360)
 
 
+    def save(self, ** kwargs):
+        super().save()
+        image1=Image.open(self.img1.path)
+        new_img1= image1.resize((350,300))
+        print(image1.size)
+        print(new_img1.size)
+        new_img1.save(self.img1.path)
+
+        image2=Image.open(self.img2.path)
+        new_img2= image2.resize((350,300))
+        new_img2.save(self.img2.path)
+
+        image3=Image.open(self.img3.path)
+        new_img3= image3.resize((350,300))
+        new_img3.save(self.img3.path)
+
+        image4=Image.open(self.img4.path)
+        new_img4= image4.resize((350,300))
+        new_img4.save(self.img4.path)
+
+
+
 class Flat(models.Model):
     title = models.CharField(max_length=32)
 
@@ -95,6 +139,28 @@ class Flat(models.Model):
     parking = models.BooleanField()
     agreement_duration = models.IntegerField()     # no of months
     description = models.TextField(max_length=360)
+
+
+    def save(self, ** kwargs):
+        super().save()
+        image1=Image.open(self.img1.path)
+        new_img1= image1.resize((350,300))
+        print(image1.size)
+        print(new_img1.size)
+        new_img1.save(self.img1.path)
+
+        image2=Image.open(self.img2.path)
+        new_img2= image2.resize((350,300))
+        new_img2.save(self.img2.path)
+
+        image3=Image.open(self.img3.path)
+        new_img3= image3.resize((350,300))
+        new_img3.save(self.img3.path)
+
+        image4=Image.open(self.img4.path)
+        new_img4= image4.resize((350,300))
+        new_img4.save(self.img4.path)
+
 
 
 

@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import House,Room,Flat
 from .serializers import HouseSerializer,RoomSerializer,FlatSerializer
+from PIL import Image
 # from .serializers import ImageSerializer
 # from .models import Image
 
@@ -19,6 +20,18 @@ class HouseViewSet(viewsets.ModelViewSet):
     
     @action(detail=False, methods=['POST'])
     def postresult(self, request, pk=None):
+        # im1 = Image.open(request.data['img1'])
+        # img11 = im1.resize((350,300))
+        
+        # im2 = Image.open(request.data['img2'])
+        # img22 = im2.resize((350,300))
+        
+        # im3 = Image.open(request.data['img3'])
+        # img33 = im3.resize((350,300))
+        
+        # im4 = Image.open(request.data['img4'])
+        # img44 = im4.resize((350,300))
+        
         house = House.objects.create(
             title = request.data['title'],
             img1=request.data['img1'],

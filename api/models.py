@@ -28,10 +28,10 @@ class Data(models.Model):
     property_type=models.CharField(max_length=5,choices=PROPERTY_TYPE_CHOICE,blank=False)
 
     title = models.CharField(max_length=32,blank=False)
-    img1=models.ImageField(upload_to='images/house/',blank=True, default='images/house/default.png')
-    img2=models.ImageField(upload_to='images/house/',blank=True, default='images/house/default.png')
-    img3=models.ImageField(upload_to='images/house/',blank=True, default='images/house/default.png')
-    img4=models.ImageField(upload_to='images/house/',blank=True, default='images/house/default.png')
+    img1=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
+    img2=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
+    img3=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
+    img4=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
 
 
     description = models.TextField(max_length=360,blank=False)

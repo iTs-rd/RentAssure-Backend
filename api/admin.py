@@ -1,8 +1,4 @@
 from django.contrib import admin
-from .models import House, Room, Flat
-# from .models import Image
+from .models import Data
 
-admin.site.register(House)
-admin.site.register(Room)
-admin.site.register(Flat)
-# admin.site.register(Image)
+admin.site.register(Data)

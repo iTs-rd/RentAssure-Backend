@@ -1,23 +1,14 @@
 from rest_framework import serializers
-from .models import Flat, Room, House
-# from .models import Image
+from .models import Data
 
-# class ImageSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model= Image
-#         fields= ('id','img1','img2')
 
-class HouseSerializer(serializers.ModelSerializer):
+class DataSerializer(serializers.ModelSerializer):
     class Meta:
-        model = House
-        fields = ('id' ,'title','img1','img2','img3','img4', 'bedroom', 'bathroom', 'balconies', 'area', 'furnished', 'price', 'additional_charge', 'security_money', 'locality', 'address', 'city', 'state', 'pin', 'phone', 'available', 'parking', 'agreement_duration', 'description')
+        model = Data
+        fields = '__all__'
 
-class RoomSerializer(serializers.ModelSerializer):
+class DataMiniSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Room
-        fields = ('id','img1','img2','img3','img4' ,'title', 'bathroom', 'balconies', 'ac', 'water', 'electricity', 'area', 'furnished', 'price', 'additional_charge', 'security_money', 'locality', 'address', 'city', 'state', 'pin', 'phone', 'available', 'parking', 'agreement_duration', 'description')
+        model = Data
+        fields = ('id','property_type' ,'img1','img2','img3','img4','title', 'area', 'furnished', 'rent','available_from','available_for','posted_on','posted_by')
 
-class FlatSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Flat
-        fields = ('id','img1','img2','img3','img4' ,'title', 'bedroom', 'floor', 'bathroom', 'balconies', 'area', 'furnished', 'price', 'additional_charge', 'security_money', 'locality', 'address', 'city', 'state', 'pin', 'phone', 'available', 'parking', 'agreement_duration', 'description')

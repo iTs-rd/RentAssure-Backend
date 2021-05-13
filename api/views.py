@@ -1,8 +1,9 @@
-from rest_framework import viewsets,status
+from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .models import Data
-from .serializers import DataSerializer,DataMiniSerializer
+from .models import Data, ContactData
+from .serializers import DataSerializer, DataMiniSerializer, ContactDataSerializer
 from PIL import Image
+
 
 class DataViewSet(viewsets.ModelViewSet):
     queryset = Data.objects.all()
@@ -14,7 +15,6 @@ class DataViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
 
     def list(self, request, *args, **kwargs):
         response = {'message': 'You can\'t use GET method like this'}
@@ -34,10 +34,10 @@ class DataViewSetList(viewsets.ModelViewSet):
         response = {'message': 'You can\'t use POST method like this'}
         return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
 
-
     def list(self, request, *args, **kwargs):
         if 'start' in request.headers and 'end' in request.headers:
-            queryset = Data.objects.filter(id__range=[request.headers['start'],request.headers['end']])
+            queryset = Data.objects.filter(
+                id__range=[request.headers['start'], request.headers['end']])
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
         else:
@@ -47,3 +47,9 @@ class DataViewSetList(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         response = {'message': 'You can\'t use GET method like this'}
         return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
+class ContactDataViewSet(viewsets.ModelViewSet):
+    queryset = ContactData.objects.all()
+    serializer_class = ContactDataSerializer
+

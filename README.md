@@ -1,9 +1,11 @@
 "# RentAssure-Backend" 
 "# RentAssure-Backend-" 
 
-email- admin@gmail.com
+
+<!-- SUPERUSER -->
+email- admin@admin.com
 password- admin
-name- rudresh
+name- admin
 username- admin
 
 

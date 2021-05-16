@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserModel,DataModel
+from .models import UserModel,DataModel,ContactData
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -28,3 +28,4 @@ class UserAdminConfig(UserAdmin):
 
 admin.site.register(UserModel, UserAdminConfig)
 admin.site.register(DataModel)
+admin.site.register(ContactData)

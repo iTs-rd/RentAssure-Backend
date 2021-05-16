@@ -4,6 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 # , BaseUserManager
 from PIL import Image
+from django.utils.deconstruct import deconstructible
+from django.core.validators import MinLengthValidator, int_list_validator, EmailValidator
 
 
 class BaseUserManager(models.Manager):
@@ -155,7 +157,8 @@ class DataModel(models.Model):
         ('Daily','Daily'),
         ('Weekly','Weekly')
     ]
-    cleaning=models.CharField(max_length=6,choices=CLEANING_CHOICES,blank=True,default='no')
+    cleaning = models.CharField(
+        max_length=6, choices=CLEANING_CHOICES, blank=True, default='no')
 
     FURNISHED_CHOICES=[
         ('Unfurnished','Unfurnished'),
@@ -177,7 +180,7 @@ class DataModel(models.Model):
     ]
     available_for = models.CharField(max_length=20,choices=AVAILABLE_FOR_CHOICES,default='any',blank=True)
 
-    available_from=models.DateField(blank=False)
+    available_from = models.DateField(blank=False)
     rent = models.IntegerField(blank=False)
     additional_charge = models.IntegerField(default=0,blank=True)
     security_money = models.IntegerField(default=0,blank=True)
@@ -193,40 +196,56 @@ class DataModel(models.Model):
         ('Owner','Owner'),
         ('Agent','Agent')
     ]
-    posted_by=models.CharField(max_length=5,choices=POSTED_BY_CHOICES)
+    posted_by = models.CharField(max_length=5, choices=POSTED_BY_CHOICES)
 
-    posted_on=models.DateField(auto_now_add=True)
-    agent_name=models.CharField(max_length=40,blank=True,null=True)
-    age_of_property=models.IntegerField(blank=True,null=True)
-    locality = models.TextField(max_length=360,null=True,blank=True)
-    address = models.TextField(max_length=360,blank=False)
-    city = models.TextField(max_length=360,blank=False)
-    state= models.TextField(max_length=360,blank=False)
-    pin = models.TextField(max_length=360,blank=False)
-
-
+    posted_on = models.DateField(auto_now_add=True)
+    agent_name = models.CharField(max_length=40, blank=True, null=True)
+    age_of_property = models.IntegerField(blank=True, null=True)
+    locality = models.TextField(max_length=360, null=True, blank=True)
+    address = models.TextField(max_length=360, blank=False)
+    city = models.TextField(max_length=360, blank=False)
+    state = models.TextField(max_length=360, blank=False)
+    pin = models.TextField(max_length=360, blank=False)
 
     def __str__(self):
         return self.user.username+ " itemID: "+str(self.id)
 
     # to change image size
-    
+
     def save(self, ** kwargs):
         super().save()
-        img_size=(350,300)
+        img_size = (350, 300)
 
-        image1=Image.open(self.img1.path)
-        image2=Image.open(self.img2.path)
-        image3=Image.open(self.img3.path)
-        image4=Image.open(self.img4.path)
+        image1 = Image.open(self.img1.path)
+        image2 = Image.open(self.img2.path)
+        image3 = Image.open(self.img3.path)
+        image4 = Image.open(self.img4.path)
 
-        new_img1= image1.resize(img_size)
-        new_img2= image2.resize(img_size)
-        new_img3= image3.resize(img_size)
-        new_img4= image4.resize(img_size)
+        new_img1 = image1.resize(img_size)
+        new_img2 = image2.resize(img_size)
+        new_img3 = image3.resize(img_size)
+        new_img4 = image4.resize(img_size)
 
         new_img1.save(self.img1.path)
         new_img2.save(self.img2.path)
         new_img3.save(self.img3.path)
         new_img4.save(self.img4.path)
 
+
+@ deconstructible
+class WhitelistEmailValidator(EmailValidator):
+
+    def validate_domain_part(self, domain_part):
+        return False
+
+    def __eq__(self, other):
+        return isinstance(other, WhitelistEmailValidator) and super().__eq__(other)
+
+
+class ContactData(models.Model):
+    name = models.CharField(max_length=50, blank=False)
+    email = models.CharField(max_length=60, validators=[WhitelistEmailValidator(
+        whitelist=['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com'])])
+    mobile = models.CharField(max_length=10, verbose_name='Phone Number', validators=[int_list_validator(sep=' '),
+                                                                                      MinLengthValidator(10)])
+    detail = models.TextField(max_length=300, blank=False)

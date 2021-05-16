@@ -1,10 +1,10 @@
-from rest_framework import viewsets,status
+from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .models import UserModel,DataModel
-from .serializers import DataSerializer,DataMiniSerializer,UserSerializer,UserSerializerPassword
+from .models import UserModel,DataModel,ContactData
+from .serializers import DataSerializer,DataMiniSerializer,UserSerializer,UserSerializerPassword,ContactDataSerializer
 from .filters import DataFilter 
 from rest_framework.settings import api_settings
 
@@ -83,6 +83,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 
+
 class DataViewSet(viewsets.ModelViewSet):
     queryset = DataModel.objects.all()
     serializer_class = DataSerializer
@@ -95,6 +96,8 @@ class DataViewSet(viewsets.ModelViewSet):
         # CHANGED
         token=request.headers['authorization'][6:]
         user = Token.objects.get(key=token).user.id
+        print(request.data['user'])
+        print(user)
         if request.data['user'] != str(user):
             response = {'message': 'Unauthorized user'}
             return Response(response, status=status.HTTP_401_UNAUTHORIZED)
@@ -119,11 +122,6 @@ class DataViewSet(viewsets.ModelViewSet):
         response = {'message': 'ok','result':serializer.data}
         return Response(response)
 
-
-    def retrieve(self, request, *args, **kwargs):
-        response = {'message': 'You can\'t use GET method like this'}
-        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
-
     def destroy(self, request, *args, **kwargs):
         response = {'message': 'You can\'t use DELETE method like this'}
         return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
@@ -138,7 +136,6 @@ class DataViewSetList(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         response = {'message': 'You can\'t use POST method like this'}
         return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
-
 
     def list(self, request, *args, **kwargs):
         if 'start' in request.headers and 'end' in request.headers:
@@ -167,3 +164,6 @@ class DataViewSetList(viewsets.ModelViewSet):
         response = {'message': 'You can\'t use DELETE method like this'}
         return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
 
+class ContactDataViewSet(viewsets.ModelViewSet):
+    queryset = ContactData.objects.all()
+    serializer_class = ContactDataSerializer

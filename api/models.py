@@ -1,37 +1,128 @@
 from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+# , BaseUserManager
 from PIL import Image
 
 
-###   compulsory field in post method (other than these field all are optional)
+class BaseUserManager(models.Manager):
 
-# title
-# address
-# city
-# state
-# pin
-# description
-# property_type
-# available_from
-# Furnished
-# rent
-# owner_name
-# owner_phone_no1
-# posted_by
+    @classmethod
+    def normalize_email(cls, email):
+        """
+        Normalize the email address by lowercasing the domain part of it.
+        """
+        email = email or ''
+        try:
+            email_name, domain_part = email.strip().rsplit('@', 1)
+        except ValueError:
+            pass
+        else:
+            email = email_name + '@' + domain_part.lower()
+        return email
+
+    def make_random_password(self, length=10,
+                             allowed_chars='abcdefghjkmnpqrstuvwxyz'
+                                           'ABCDEFGHJKLMNPQRSTUVWXYZ'
+                                           '23456789'):
+        """
+        Generate a random password with the given length and given
+        allowed_chars. The default value of allowed_chars does not have "I" or
+        "O" or letters and digits that look similar -- just to avoid confusion.
+        """
+        return get_random_string(length, allowed_chars)
+
+    def get_by_natural_key(self, email):
+        return self.get(**{self.model.USERNAME_FIELD: email})
 
 
-class Data(models.Model):
+class CustomAccountManager(BaseUserManager):
+
+    def create_superuser(self, email, username, firstname, password, **other_fields):
+
+        other_fields.setdefault('is_staff', True)
+        other_fields.setdefault('is_superuser', True)
+        other_fields.setdefault('is_active', True)
+
+        if other_fields.get('is_staff') is not True:
+            raise ValueError(
+                'Superuser must be assigned to is_staff=True.')
+        if other_fields.get('is_superuser') is not True:
+            raise ValueError(
+                'Superuser must be assigned to is_superuser=True.')
+
+        return self.create_user(email, username, firstname, password, **other_fields)
+
+    def create_user(self, email, username, firstname, password, **other_fields):
+
+        if not email:
+            raise ValueError(_('You must provide an email address'))
+        other_fields.setdefault('is_active', True)
+
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username,
+                          firstname=firstname, **other_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+
+class UserModel(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('email address'), unique=True)
+    username = models.CharField(max_length=150, unique=True)
+    firstname = models.CharField(max_length=150, blank=False)
+    lastname=models.CharField(max_length=32,blank=True,null=True)
+    mobile=models.CharField(max_length=10,blank=True,null=True)
+    dp=models.ImageField(upload_to ='images/dp/', default='images/dp/default.jpg',blank=True)
+    age=models.IntegerField(blank=True,null=True)
+
+    GENDER_CHOICES=[
+        ('Male','Male'),
+        ('Female','Female'),
+        ('Other','Other')
+    ]
+    gender=models.CharField(max_length=10,choices=GENDER_CHOICES,blank=True)
+
+    start_date = models.DateTimeField(default=timezone.now)
+    about = models.TextField(_(
+        'about'), max_length=500, blank=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+
+    objects = CustomAccountManager()
+
+    EMAIL_FIELD = 'email'
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username', 'firstname']
+
+    def __str__(self):
+        return self.username
+
+    def save(self, ** kwargs):
+        super().save()
+        img_size=(200,200)
+        image1=Image.open(self.dp.path)
+        new_img1= image1.resize(img_size)
+        new_img1.save(self.dp.path)
+
+
+
+class DataModel(models.Model):
+    user=models.ForeignKey(UserModel,on_delete=models.CASCADE,blank=False)
     PROPERTY_TYPE_CHOICE= [
-        ('flat','Flat'),
-        ('room','Room'),
-        ('house','House')
+        ('Flat','Flat'),
+        ('Room','Room'),
+        ('House','House')
     ]
     property_type=models.CharField(max_length=5,choices=PROPERTY_TYPE_CHOICE,blank=False)
 
     title = models.CharField(max_length=32,blank=False)
-    img1=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
-    img2=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
-    img3=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
-    img4=models.ImageField(upload_to='images/data/', default='images/data/default.png',verbose_name="")
+    img1=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
+    img2=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
+    img3=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
+    img4=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
 
 
     description = models.TextField(max_length=360,blank=False)
@@ -60,30 +151,31 @@ class Data(models.Model):
     fire_alarme=models.BooleanField(default=False)
 
     CLEANING_CHOICES=[
-        ('no','No'),
-        ('daily','Daily'),
-        ('weekly','Weekly')
+        ('No','No'),
+        ('Daily','Daily'),
+        ('Weekly','Weekly')
     ]
     cleaning=models.CharField(max_length=6,choices=CLEANING_CHOICES,blank=True,default='no')
 
     FURNISHED_CHOICES=[
-        ('unfurnished','Unfurnished'),
-        ('semifurnished','Semifurnished'),
-        ('fullyfurnished','Fullyfurnished')
+        ('Unfurnished','Unfurnished'),
+        ('SemiFurnished','Semifurnished'),
+        ('FullyFurnished','Fullyfurnished')
     ]
     furnished = models.CharField(max_length=20,choices=FURNISHED_CHOICES,blank=False,default='unfurnished')
 
 
     AVAILABLE_FOR_CHOICES=[
-        ('bachelor','bachelor'),
-        ('student','student'),
-        ('couple','couple'),
-        ('family','family'),
-        ('boys','boys'),
-        ('girls','girls'),
-        ('any','any')
+        ('Student','Student'),
+        ('GovernmentEmployee','GovernmentEmployee'),
+        ('Bachelor','Bachelor'),
+        ('Couple','Couple'),
+        ('Family','Family'),
+        ('Boy','Boy'),
+        ('Girl','Girl'),
+        ('Any','Any')
     ]
-    available_for = models.CharField(max_length=10,choices=AVAILABLE_FOR_CHOICES,default='any',blank=True)
+    available_for = models.CharField(max_length=20,choices=AVAILABLE_FOR_CHOICES,default='any',blank=True)
 
     available_from=models.DateField(blank=False)
     rent = models.IntegerField(blank=False)
@@ -98,8 +190,8 @@ class Data(models.Model):
     owner_phone_no2 = models.CharField(max_length=10,blank=True)
 
     POSTED_BY_CHOICES=[
-        ('owner','Owner'),
-        ('agent','Agent')
+        ('Owner','Owner'),
+        ('Agent','Agent')
     ]
     posted_by=models.CharField(max_length=5,choices=POSTED_BY_CHOICES)
 
@@ -113,6 +205,9 @@ class Data(models.Model):
     pin = models.TextField(max_length=360,blank=False)
 
 
+
+    def __str__(self):
+        return self.user.username+ " itemID: "+str(self.id)
 
     # to change image size
     

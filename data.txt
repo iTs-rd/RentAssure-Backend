@@ -1,0 +1,12 @@
+property_type:House
+title:3BHK house in deoria
+address:kasiya road
+city:deoria
+state:uttra pradesh
+pin:274001
+description:random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text random text
+available_from:2021-05-25
+rent:25000
+owner_name:ankit
+owner_phone_no1:9211420786
+posted_by:Owner

@@ -74,17 +74,19 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(max_length=150, unique=True)
     firstname = models.CharField(max_length=150, blank=False)
-    lastname=models.CharField(max_length=32,blank=True,null=True)
-    mobile=models.CharField(max_length=10,blank=True,null=True)
-    dp=models.ImageField(upload_to ='images/dp/', default='images/dp/default.jpg',blank=True)
-    age=models.IntegerField(blank=True,null=True)
+    lastname = models.CharField(max_length=32, blank=True, null=True)
+    mobile = models.CharField(max_length=10, blank=True, null=True)
+    dp = models.ImageField(upload_to='images/dp/',
+                           default='images/dp/default.jpg', blank=True)
+    age = models.IntegerField(blank=True, null=True)
 
-    GENDER_CHOICES=[
-        ('Male','Male'),
-        ('Female','Female'),
-        ('Other','Other')
+    GENDER_CHOICES = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other')
     ]
-    gender=models.CharField(max_length=10,choices=GENDER_CHOICES,blank=True)
+    gender = models.CharField(
+        max_length=10, choices=GENDER_CHOICES, blank=True)
 
     start_date = models.DateTimeField(default=timezone.now)
     about = models.TextField(_(
@@ -104,97 +106,100 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
 
     def save(self, ** kwargs):
         super().save()
-        img_size=(200,200)
-        image1=Image.open(self.dp.path)
-        new_img1= image1.resize(img_size)
+        img_size = (200, 200)
+        image1 = Image.open(self.dp.path)
+        new_img1 = image1.resize(img_size)
         new_img1.save(self.dp.path)
 
 
-
 class DataModel(models.Model):
-    user=models.ForeignKey(UserModel,on_delete=models.CASCADE,blank=False)
-    PROPERTY_TYPE_CHOICE= [
-        ('Flat','Flat'),
-        ('Room','Room'),
-        ('House','House')
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, blank=False)
+    PROPERTY_TYPE_CHOICE = [
+        ('Flat', 'Flat'),
+        ('Room', 'Room'),
+        ('House', 'House')
     ]
-    property_type=models.CharField(max_length=5,choices=PROPERTY_TYPE_CHOICE,blank=False)
+    property_type = models.CharField(
+        max_length=5, choices=PROPERTY_TYPE_CHOICE, blank=False)
 
-    title = models.CharField(max_length=32,blank=False)
-    img1=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
-    img2=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
-    img3=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
-    img4=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
+    title = models.CharField(max_length=32, blank=False)
+    img1 = models.ImageField(upload_to='images/data/',
+                             default='images/data/default.png', blank=True)
+    img2 = models.ImageField(upload_to='images/data/',
+                             default='images/data/default.png', blank=True)
+    img3 = models.ImageField(upload_to='images/data/',
+                             default='images/data/default.png', blank=True)
+    img4 = models.ImageField(upload_to='images/data/',
+                             default='images/data/default.png', blank=True)
 
-
-    description = models.TextField(max_length=360,blank=False)
-    bedroom = models.IntegerField(null=True,blank=True)
-    bathroom = models.IntegerField(null=True,blank=True)
-    balconies = models.IntegerField(null=True,blank=True)
-    Kitchen = models.IntegerField(null=True,blank=True)
-    area = models.IntegerField(null=True,blank=True)
+    description = models.TextField(max_length=360, blank=False)
+    bedroom = models.IntegerField(null=True, blank=True)
+    bathroom = models.IntegerField(null=True, blank=True)
+    balconies = models.IntegerField(null=True, blank=True)
+    Kitchen = models.IntegerField(null=True, blank=True)
+    area = models.IntegerField(null=True, blank=True)
 
     parking = models.BooleanField(default=False)
-    lift=models.BooleanField(default=False)
-    swimming_pool=models.BooleanField(default=False)
-    gym=models.BooleanField(default=False)
-    gas_pipeline=models.BooleanField(default=False)
-    electricity_charge=models.IntegerField(default=0,blank=True)
-    electricity_supply=models.BooleanField(default=True)
-    Power_backup=models.BooleanField(default=False)
-    water_charge=models.IntegerField(default=0,blank=True)
-    water_supply=models.BooleanField(default=True)
-    water_purifier=models.BooleanField(default=False)
-    fridge=models.BooleanField(default=False)
-    washing_machine=models.BooleanField(default=False)
-    CCTV=models.BooleanField(default=False)
-    guard=models.BooleanField(default=False)
-    medical=models.BooleanField(default=False)
-    fire_alarme=models.BooleanField(default=False)
+    lift = models.BooleanField(default=False)
+    swimming_pool = models.BooleanField(default=False)
+    gym = models.BooleanField(default=False)
+    gas_pipeline = models.BooleanField(default=False)
+    electricity_charge = models.IntegerField(default=0, blank=True)
+    electricity_supply = models.BooleanField(default=True)
+    Power_backup = models.BooleanField(default=False)
+    water_charge = models.IntegerField(default=0, blank=True)
+    water_supply = models.BooleanField(default=True)
+    water_purifier = models.BooleanField(default=False)
+    fridge = models.BooleanField(default=False)
+    washing_machine = models.BooleanField(default=False)
+    CCTV = models.BooleanField(default=False)
+    guard = models.BooleanField(default=False)
+    medical = models.BooleanField(default=False)
+    fire_alarme = models.BooleanField(default=False)
 
-    CLEANING_CHOICES=[
-        ('No','No'),
-        ('Daily','Daily'),
-        ('Weekly','Weekly')
+    CLEANING_CHOICES = [
+        ('No', 'No'),
+        ('Daily', 'Daily'),
+        ('Weekly', 'Weekly')
     ]
     cleaning = models.CharField(
         max_length=6, choices=CLEANING_CHOICES, blank=True, default='no')
 
-    FURNISHED_CHOICES=[
-        ('Unfurnished','Unfurnished'),
-        ('SemiFurnished','Semifurnished'),
-        ('FullyFurnished','Fullyfurnished')
+    FURNISHED_CHOICES = [
+        ('Unfurnished', 'Unfurnished'),
+        ('SemiFurnished', 'Semifurnished'),
+        ('FullyFurnished', 'Fullyfurnished')
     ]
-    furnished = models.CharField(max_length=20,choices=FURNISHED_CHOICES,blank=False,default='unfurnished')
+    furnished = models.CharField(
+        max_length=20, choices=FURNISHED_CHOICES, blank=False, default='unfurnished')
 
-
-    AVAILABLE_FOR_CHOICES=[
-        ('Student','Student'),
-        ('GovernmentEmployee','GovernmentEmployee'),
-        ('Bachelor','Bachelor'),
-        ('Couple','Couple'),
-        ('Family','Family'),
-        ('Boy','Boy'),
-        ('Girl','Girl'),
-        ('Any','Any')
+    AVAILABLE_FOR_CHOICES = [
+        ('Student', 'Student'),
+        ('GovernmentEmployee', 'GovernmentEmployee'),
+        ('Bachelor', 'Bachelor'),
+        ('Couple', 'Couple'),
+        ('Family', 'Family'),
+        ('Boy', 'Boy'),
+        ('Girl', 'Girl'),
+        ('Any', 'Any')
     ]
-    available_for = models.CharField(max_length=20,choices=AVAILABLE_FOR_CHOICES,default='any',blank=True)
+    available_for = models.CharField(
+        max_length=20, choices=AVAILABLE_FOR_CHOICES, default='any', blank=True)
 
     available_from = models.DateField(blank=False)
     rent = models.IntegerField(blank=False)
-    additional_charge = models.IntegerField(default=0,blank=True)
-    security_money = models.IntegerField(default=0,blank=True)
-    one_time_charge =models.IntegerField(default=0,blank=True)
-    agreement_duration = models.IntegerField(null=True,blank=True)
+    additional_charge = models.IntegerField(default=0, blank=True)
+    security_money = models.IntegerField(default=0, blank=True)
+    one_time_charge = models.IntegerField(default=0, blank=True)
+    agreement_duration = models.IntegerField(null=True, blank=True)
 
+    owner_name = models.CharField(max_length=40, blank=False)
+    owner_phone_no1 = models.CharField(max_length=10, blank=False)
+    owner_phone_no2 = models.CharField(max_length=10, blank=True)
 
-    owner_name=models.CharField(max_length=40,blank=False)
-    owner_phone_no1 = models.CharField(max_length=10,blank=False)
-    owner_phone_no2 = models.CharField(max_length=10,blank=True)
-
-    POSTED_BY_CHOICES=[
-        ('Owner','Owner'),
-        ('Agent','Agent')
+    POSTED_BY_CHOICES = [
+        ('Owner', 'Owner'),
+        ('Agent', 'Agent')
     ]
     posted_by = models.CharField(max_length=5, choices=POSTED_BY_CHOICES)
 
@@ -208,7 +213,7 @@ class DataModel(models.Model):
     pin = models.TextField(max_length=360, blank=False)
 
     def __str__(self):
-        return self.user.username+ " itemID: "+str(self.id)
+        return self.user.username + " itemID: "+str(self.id)
 
     # to change image size
 
@@ -249,3 +254,4 @@ class ContactData(models.Model):
     mobile = models.CharField(max_length=10, verbose_name='Phone Number', validators=[int_list_validator(sep=' '),
                                                                                       MinLengthValidator(10)])
     detail = models.TextField(max_length=300, blank=False)
+# 00747686 ludo code

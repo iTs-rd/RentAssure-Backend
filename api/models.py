@@ -2,10 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-# , BaseUserManager
 from PIL import Image
 from django.utils.deconstruct import deconstructible
 from django.core.validators import MinLengthValidator, int_list_validator, EmailValidator
+
 
 
 class BaseUserManager(models.Manager):
@@ -110,7 +110,6 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
         new_img1.save(self.dp.path)
 
 
-
 class DataModel(models.Model):
     user=models.ForeignKey(UserModel,on_delete=models.CASCADE,blank=False)
     PROPERTY_TYPE_CHOICE= [
@@ -121,13 +120,25 @@ class DataModel(models.Model):
     property_type=models.CharField(max_length=5,choices=PROPERTY_TYPE_CHOICE,blank=False)
 
     title = models.CharField(max_length=32,blank=False)
-    img1=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
-    img2=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
-    img3=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
-    img4=models.ImageField(upload_to='images/data/', default='images/data/default.png',blank=True)
+    img1=models.ImageField(upload_to='images/product/', default='images/default/1.jpg',blank=True)
+    img2=models.ImageField(upload_to='images/product/', default='images/default/2.jpg',blank=True)
+    img3=models.ImageField(upload_to='images/product/', default='images/default/3.jpg',blank=True)
+    img4=models.ImageField(upload_to='images/product/', default='images/default/4.jpg',blank=True)
 
 
     description = models.TextField(max_length=360,blank=False)
+
+    BHK_CHOICES=[
+        ('1RK/1BHK','1RK/1BHK'),
+        ('2BHK','2BHK'),
+        ('3BHK','3BHK'),
+        ('4BHK','4BHK'),
+        ('4BHK','4BHK'),
+        ('5+BHK','5+BHK'),
+        ('No','No'),
+    ]
+    bhk = models.CharField(max_length=10,choices=BHK_CHOICES,blank=True,null=True)
+
     bedroom = models.IntegerField(null=True,blank=True)
     bathroom = models.IntegerField(null=True,blank=True)
     balconies = models.IntegerField(null=True,blank=True)
@@ -180,7 +191,7 @@ class DataModel(models.Model):
     ]
     available_for = models.CharField(max_length=20,choices=AVAILABLE_FOR_CHOICES,default='any',blank=True)
 
-    available_from = models.DateField(blank=False)
+    available_from = models.DateField(blank=True)
     rent = models.IntegerField(blank=False)
     additional_charge = models.IntegerField(default=0,blank=True)
     security_money = models.IntegerField(default=0,blank=True)

@@ -133,11 +133,12 @@ class DataModel(models.Model):
                              default='images/data/default.png', blank=True)
 
     description = models.TextField(max_length=360, blank=False)
-    bedroom = models.IntegerField(null=True, blank=True)
-    bathroom = models.IntegerField(null=True, blank=True)
-    balconies = models.IntegerField(null=True, blank=True)
-    Kitchen = models.IntegerField(null=True, blank=True)
-    area = models.IntegerField(null=True, blank=True)
+    bedroom = models.IntegerField(null=True, blank=True, default="0")
+    bathroom = models.IntegerField(null=True, blank=True, default="0")
+    balconies = models.IntegerField(null=True, blank=True, default="0")
+    Kitchen = models.IntegerField(null=True, blank=True, default="0")
+    area = models.IntegerField(
+        null=True, blank=True, default="Data unavailabe")
 
     parking = models.BooleanField(default=False)
     lift = models.BooleanField(default=False)
@@ -163,7 +164,7 @@ class DataModel(models.Model):
         ('Weekly', 'Weekly')
     ]
     cleaning = models.CharField(
-        max_length=6, choices=CLEANING_CHOICES, blank=True, default='no')
+        max_length=6, choices=CLEANING_CHOICES, blank=True, default='No')
 
     FURNISHED_CHOICES = [
         ('Unfurnished', 'Unfurnished'),
@@ -171,7 +172,7 @@ class DataModel(models.Model):
         ('FullyFurnished', 'Fullyfurnished')
     ]
     furnished = models.CharField(
-        max_length=20, choices=FURNISHED_CHOICES, blank=False, default='unfurnished')
+        max_length=20, choices=FURNISHED_CHOICES, blank=False, default='Unfurnished')
 
     AVAILABLE_FOR_CHOICES = [
         ('Student', 'Student'),
@@ -184,14 +185,15 @@ class DataModel(models.Model):
         ('Any', 'Any')
     ]
     available_for = models.CharField(
-        max_length=20, choices=AVAILABLE_FOR_CHOICES, default='any', blank=True)
+        max_length=20, choices=AVAILABLE_FOR_CHOICES, default='Any', blank=True)
 
     available_from = models.DateField(blank=False)
     rent = models.IntegerField(blank=False)
     additional_charge = models.IntegerField(default=0, blank=True)
     security_money = models.IntegerField(default=0, blank=True)
     one_time_charge = models.IntegerField(default=0, blank=True)
-    agreement_duration = models.IntegerField(null=True, blank=True)
+    agreement_duration = models.IntegerField(
+        null=True, blank=True, default=1)
 
     owner_name = models.CharField(max_length=40, blank=False)
     owner_phone_no1 = models.CharField(max_length=10, blank=False)
@@ -205,7 +207,8 @@ class DataModel(models.Model):
 
     posted_on = models.DateField(auto_now_add=True)
     agent_name = models.CharField(max_length=40, blank=True, null=True)
-    age_of_property = models.IntegerField(blank=True, null=True)
+    age_of_property = models.IntegerField(
+        blank=True, null=True, default="Not available")
     locality = models.TextField(max_length=360, null=True, blank=True)
     address = models.TextField(max_length=360, blank=False)
     city = models.TextField(max_length=360, blank=False)

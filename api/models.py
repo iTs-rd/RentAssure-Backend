@@ -2,10 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-# , BaseUserManager
 from PIL import Image
 from django.utils.deconstruct import deconstructible
 from django.core.validators import MinLengthValidator, int_list_validator, EmailValidator
+
 
 
 class BaseUserManager(models.Manager):
@@ -187,7 +187,7 @@ class DataModel(models.Model):
     available_for = models.CharField(
         max_length=20, choices=AVAILABLE_FOR_CHOICES, default='Any', blank=True)
 
-    available_from = models.DateField(blank=False)
+    available_from = models.DateField(blank=True)
     rent = models.IntegerField(blank=False)
     additional_charge = models.IntegerField(default=0, blank=True)
     security_money = models.IntegerField(default=0, blank=True)

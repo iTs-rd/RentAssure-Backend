@@ -3,10 +3,10 @@
 
 
 <!-- SUPERUSER -->
-email- admin@admin.com
-password- admin
-name- admin
-username- admin
+email- a@gmail.com
+password- a
+name- a
+username- a
 
 
 

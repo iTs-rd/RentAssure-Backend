@@ -1,3 +1,4 @@
+import os
 from .models import DataModel
 
 # change all these before run
@@ -6,16 +7,16 @@ from .models import DataModel
 # f a l s e  =  False
 # change all img field with image location (location must be in media folder)
 
-
+loc=os.getcwd()
 datas=[
     {
         "id": 1,
         "property_type": "House",
         "title": "Rainbow House",
-        "img1": "D:\RentAssure\RentAssure-Backend\media\\raw\\1.jpeg",
-        "img2": "D:\RentAssure\RentAssure-Backend\media\\raw\\2.jpeg",
-        "img3": "D:\RentAssure\RentAssure-Backend\media\\raw\\3.jpeg",
-        "img4": "D:\RentAssure\RentAssure-Backend\media\\raw\\4.jpeg",
+        "img1": loc+"\media\\raw\\1.jpeg",
+        "img2": loc+"\media\\raw\\2.jpeg",
+        "img3": loc+"\media\\raw\\3.jpeg",
+        "img4": loc+"\media\\raw\\4.jpeg",
         "description": "It is a beautiful house with magical view outside.",
         "bhk": "3BHK",
         "bedroom": 3,
@@ -67,10 +68,10 @@ datas=[
         "id": 2,
         "property_type": "Flat",
         "title": "2 BHK Apartment",
-        "img1": "D:\RentAssure\RentAssure-Backend\media\\raw\\5.jpeg",
-        "img2": "D:\RentAssure\RentAssure-Backend\media\\raw\\6.jpeg",
-        "img3": "D:\RentAssure\RentAssure-Backend\media\\raw\\7.jpeg",
-        "img4": "D:\RentAssure\RentAssure-Backend\media\\raw\\8.jpeg",
+        "img1": loc+"\media\\raw\\5.jpeg",
+        "img2": loc+"\media\\raw\\6.jpeg",
+        "img3": loc+"\media\\raw\\7.jpeg",
+        "img4": loc+"\media\\raw\\8.jpeg",
         "description": "Attractive and comfortable",
         "bhk": "2BHK",
         "bedroom": 2,
@@ -122,10 +123,10 @@ datas=[
         "id": 3,
         "property_type": "House",
         "title": "Sagar Villa",
-        "img1": "D:\RentAssure\RentAssure-Backend\media\\raw\\9.jpeg",
-        "img2": "D:\RentAssure\RentAssure-Backend\media\\raw\\10.jpeg",
-        "img3": "D:\RentAssure\RentAssure-Backend\media\\raw\\11.jpeg",
-        "img4": "D:\RentAssure\RentAssure-Backend\media\\raw\\12.jpeg",
+        "img1": loc+"\media\\raw\\9.jpeg",
+        "img2": loc+"\media\\raw\\10.jpeg",
+        "img3": loc+"\media\\raw\\11.jpeg",
+        "img4": loc+"\media\\raw\\12.jpeg",
         "description": "Its very big house with all facilities.",
         "bhk": "5+BHK",
         "bedroom": 6,
@@ -177,10 +178,10 @@ datas=[
         "id": 4,
         "property_type": "Room",
         "title": "PG Morgan",
-        "img1": "D:\RentAssure\RentAssure-Backend\media\\raw\\13.jpeg",
-        "img2": "D:\RentAssure\RentAssure-Backend\media\\raw\\14.jpeg",
-        "img3": "D:\RentAssure\RentAssure-Backend\media\\raw\\15.jpeg",
-        "img4": "D:\RentAssure\RentAssure-Backend\media\\raw\\16.jpeg",
+        "img1": loc+"\media\\raw\\13.jpeg",
+        "img2": loc+"\media\\raw\\14.jpeg",
+        "img3": loc+"\media\\raw\\15.jpeg",
+        "img4": loc+"\media\\raw\\16.jpeg",
         "description": "Best room for anyone.",
         "bhk": "1RK/1BHK",
         "bedroom": 1,
@@ -232,10 +233,10 @@ datas=[
         "id": 5,
         "property_type": "Flat",
         "title": "Bhatia flats",
-        "img1": "D:\RentAssure\RentAssure-Backend\media\\raw\\17.jpeg",
-        "img2": "D:\RentAssure\RentAssure-Backend\media\\raw\\18.jpeg",
-        "img3": "D:\RentAssure\RentAssure-Backend\media\\raw\\19.jpeg",
-        "img4": "D:\RentAssure\RentAssure-Backend\media\\raw\\20.jpeg",
+        "img1": loc+"\media\\raw\\17.jpeg",
+        "img2": loc+"\media\\raw\\18.jpeg",
+        "img3": loc+"\media\\raw\\19.jpeg",
+        "img4": loc+"\media\\raw\\20.jpeg",
         "description": "Built in advanced Technology",
         "bhk": "2BHK",
         "bedroom": 2,
@@ -284,7 +285,6 @@ datas=[
         "user": 1
     }
 ]
-
 
 def add_data():
     print("add_data")

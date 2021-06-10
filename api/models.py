@@ -119,26 +119,33 @@ class DataModel(models.Model):
         ('Room', 'Room'),
         ('House', 'House')
     ]
-    property_type = models.CharField(
-        max_length=5, choices=PROPERTY_TYPE_CHOICE, blank=False)
+    property_type=models.CharField(max_length=5,choices=PROPERTY_TYPE_CHOICE,blank=False)
 
-    title = models.CharField(max_length=32, blank=False)
-    img1 = models.ImageField(upload_to='images/data/',
-                             default='images/data/default.png', blank=True)
-    img2 = models.ImageField(upload_to='images/data/',
-                             default='images/data/default.png', blank=True)
-    img3 = models.ImageField(upload_to='images/data/',
-                             default='images/data/default.png', blank=True)
-    img4 = models.ImageField(upload_to='images/data/',
-                             default='images/data/default.png', blank=True)
+    title = models.CharField(max_length=32,blank=False)
+    img1=models.ImageField(upload_to='images/product/', default='images/default/1.jpg',blank=True)
+    img2=models.ImageField(upload_to='images/product/', default='images/default/2.jpg',blank=True)
+    img3=models.ImageField(upload_to='images/product/', default='images/default/3.jpg',blank=True)
+    img4=models.ImageField(upload_to='images/product/', default='images/default/4.jpg',blank=True)
 
-    description = models.TextField(max_length=360, blank=False)
-    bedroom = models.IntegerField(null=True, blank=True, default="0")
-    bathroom = models.IntegerField(null=True, blank=True, default="0")
-    balconies = models.IntegerField(null=True, blank=True, default="0")
-    Kitchen = models.IntegerField(null=True, blank=True, default="0")
-    area = models.IntegerField(
-        null=True, blank=True, default="Data unavailabe")
+
+    description = models.TextField(max_length=360,blank=False)
+
+    BHK_CHOICES=[
+        ('1RK/1BHK','1RK/1BHK'),
+        ('2BHK','2BHK'),
+        ('3BHK','3BHK'),
+        ('4BHK','4BHK'),
+        ('4BHK','4BHK'),
+        ('5+BHK','5+BHK'),
+        ('No','No'),
+    ]
+    bhk = models.CharField(max_length=10,choices=BHK_CHOICES,blank=True,null=True)
+
+    bedroom = models.IntegerField(null=True,blank=True,default=0)
+    bathroom = models.IntegerField(null=True,blank=True,default=0)
+    balconies = models.IntegerField(null=True,blank=True,default=0)
+    Kitchen = models.IntegerField(null=True,blank=True,default=0)
+    area = models.IntegerField(null=True,blank=True,default=0)
 
     parking = models.BooleanField(default=False)
     lift = models.BooleanField(default=False)
@@ -192,8 +199,7 @@ class DataModel(models.Model):
     additional_charge = models.IntegerField(default=0, blank=True)
     security_money = models.IntegerField(default=0, blank=True)
     one_time_charge = models.IntegerField(default=0, blank=True)
-    agreement_duration = models.IntegerField(
-        null=True, blank=True, default=1)
+    agreement_duration = models.IntegerField(null=True, blank=True,default=12)
 
     owner_name = models.CharField(max_length=40, blank=False)
     owner_phone_no1 = models.CharField(max_length=10, blank=False)
@@ -207,8 +213,7 @@ class DataModel(models.Model):
 
     posted_on = models.DateField(auto_now_add=True)
     agent_name = models.CharField(max_length=40, blank=True, null=True)
-    age_of_property = models.IntegerField(
-        blank=True, null=True, default="Not available")
+    age_of_property = models.IntegerField(blank=True, null=True,default=0)
     locality = models.TextField(max_length=360, null=True, blank=True)
     address = models.TextField(max_length=360, blank=False)
     city = models.TextField(max_length=360, blank=False)

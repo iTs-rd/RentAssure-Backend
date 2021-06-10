@@ -83,8 +83,8 @@ class UserViewSet(viewsets.ModelViewSet):
 class DataViewSet(viewsets.ModelViewSet):
     queryset = DataModel.objects.all()
     serializer_class = DataSerializer
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication, )
+    # permission_classes = (IsAuthenticated,)
+    # authentication_classes = (TokenAuthentication, )
 
     def list(self, request, *args, **kwargs):
         response = {'message': 'You can\'t use GET method like this'}

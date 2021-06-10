@@ -295,6 +295,7 @@ def add_data():
             return 0
 
         for data in datas:
+            print("added")
             DataModel.objects.create(
                 property_type = data['property_type'],
                 title = data['title'],

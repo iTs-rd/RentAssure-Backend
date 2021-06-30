@@ -125,14 +125,11 @@ class DataModel(models.Model):
         max_length=5, choices=PROPERTY_TYPE_CHOICE, blank=False)
 
     title = models.CharField(max_length=32, blank=False)
-    img1 = models.ImageField(upload_to='images/product/',
-                             default='images/default/1.jpg', blank=True)
-    img2 = models.ImageField(upload_to='images/product/',
-                             default='images/default/2.jpg', blank=True)
-    img3 = models.ImageField(upload_to='images/product/',
-                             default='images/default/3.jpg', blank=True)
-    img4 = models.ImageField(upload_to='images/product/',
-                             default='images/default/4.jpg', blank=True)
+
+    img1 = models.CharField(max_length=200,blank=True,default="https://ibb.co/k6Wv1mX")
+    img2 = models.CharField(max_length=200,blank=True,default="https://ibb.co/k6Wv1mX")
+    img3 = models.CharField(max_length=200,blank=True,default="https://ibb.co/k6Wv1mX")
+    img4 = models.CharField(max_length=200,blank=True,default="https://ibb.co/k6Wv1mX")
 
     description = models.TextField(max_length=360, blank=False)
 
@@ -232,24 +229,24 @@ class DataModel(models.Model):
 
     # to change image size
 
-    def save(self, ** kwargs):
-        super().save()
-        img_size = (350, 300)
+    # def save(self, ** kwargs):
+    #     super().save()
+    #     img_size = (350, 300)
 
-        image1 = Image.open(self.img1.path)
-        image2 = Image.open(self.img2.path)
-        image3 = Image.open(self.img3.path)
-        image4 = Image.open(self.img4.path)
+    #     image1 = Image.open(self.img1.path)
+    #     image2 = Image.open(self.img2.path)
+    #     image3 = Image.open(self.img3.path)
+    #     image4 = Image.open(self.img4.path)
 
-        new_img1 = image1.resize(img_size)
-        new_img2 = image2.resize(img_size)
-        new_img3 = image3.resize(img_size)
-        new_img4 = image4.resize(img_size)
+    #     new_img1 = image1.resize(img_size)
+    #     new_img2 = image2.resize(img_size)
+    #     new_img3 = image3.resize(img_size)
+    #     new_img4 = image4.resize(img_size)
 
-        new_img1.save(self.img1.path)
-        new_img2.save(self.img2.path)
-        new_img3.save(self.img3.path)
-        new_img4.save(self.img4.path)
+    #     new_img1.save(self.img1.path)
+    #     new_img2.save(self.img2.path)
+    #     new_img3.save(self.img3.path)
+    #     new_img4.save(self.img4.path)
 
 
 @ deconstructible

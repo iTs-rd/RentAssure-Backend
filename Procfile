@@ -1,1 +1,1 @@
-web: waitress-serve --port=8000 RentAssureBackend.wsgi:application
+web: waitress-serve --port=$PORT RentAssureBackend.wsgi:application

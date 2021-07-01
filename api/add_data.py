@@ -1,4 +1,3 @@
-import os
 from .models import DataModel
 
 # change all these before run

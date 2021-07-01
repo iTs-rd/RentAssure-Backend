@@ -1,8 +1,7 @@
-"# RentAssure-Backend" 
+<!-- "# RentAssure-Backend" 
 "# RentAssure-Backend-" 
 
 
-<!-- SUPERUSER -->
 email- admin@admin.com
 password- admin
 name- admin
@@ -17,4 +16,4 @@ python manage.py makemigrations
 python manage.py migrate
 
 python manage.py createsuperuser
-
+ -->

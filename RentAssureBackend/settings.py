@@ -27,7 +27,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['rentassure-backend.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['rentassure-backend.herokuapp.com', 'localhost', 'rentassure.herokuapp.com']
 # ALLOWED_HOSTS = []
 
 
@@ -144,6 +144,7 @@ STATIC_ROOT = BASE_DIR / "static"
 
 CORS_ALLOWED_ORIGINS = [
     "https://rentassure-backend.herokuapp.com",
+    "https://rentassure.herokuapp.com",
     "http://localhost:3000",
     "http://localhost:3001",
 ]

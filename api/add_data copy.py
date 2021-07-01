@@ -1,12 +1,4 @@
 import os
-from .models import DataModel
-
-# change all these before run
-# n u l l  =  None
-# t r u e  =  True
-# f a l s e  =  False
-# change all img field with image location (location must be in media folder)
-
 loc=os.getcwd()
 
 img1 = loc+"\media\\raw\\1.jfif"
@@ -602,73 +594,3 @@ datas=[
         "user": 1
     },
 ]
-
-def add_data():
-    print("add_data")
-    try:
-        print("try start")
-        if len(DataModel.objects.all()):
-            print("if")
-            return 0
-
-        for data in datas:
-            print("added")
-            DataModel.objects.create(
-                property_type = data['property_type'],
-                title = data['title'],
-                img1 = data['img1'],
-                img2 = data['img2'],
-                img3 = data['img3'],
-                img4 = data['img4'],
-                description = data['description'],
-                bhk = data['bhk'],
-                bedroom = data['bedroom'],
-                bathroom = data['bathroom'],
-                balconies = data['balconies'],
-                Kitchen = data['Kitchen'],
-                area = data['area'],
-                parking = data['parking'],
-                lift = data['lift'],
-                swimming_pool = data['swimming_pool'],
-                gym = data['gym'],
-                gas_pipeline = data['gas_pipeline'],
-                electricity_charge = data['electricity_charge'],
-                electricity_supply = data['electricity_supply'],
-                Power_backup = data['Power_backup'],
-                water_charge = data['water_charge'],
-                water_supply = data['water_supply'],
-                water_purifier = data['water_purifier'],
-                fridge = data['fridge'],
-                washing_machine = data['washing_machine'],
-                CCTV = data['CCTV'],
-                guard = data['guard'],
-                medical = data['medical'],
-                fire_alarme = data['fire_alarme'],
-                cleaning  = data['cleaning'], 
-                furnished = data['furnished'],
-                available_for = data['available_for'],
-                available_from = data['available_from'],
-                rent = data['rent'],
-                additional_charge = data['additional_charge'],
-                security_money = data['security_money'],
-                one_time_charge = data['one_time_charge'],
-                agreement_duration = data['agreement_duration'],
-                owner_name = data['owner_name'],
-                owner_phone_no1 = data['owner_phone_no1'],
-                owner_phone_no2 = data['owner_phone_no2'],
-                posted_by = data['posted_by'],
-                posted_on = data['posted_on'],
-                agent_name = data['agent_name'],
-                age_of_property = data['age_of_property'],
-                locality = data['locality'],
-                address = data['address'],
-                city = data['city'],
-                state = data['state'],
-                pin = data['pin'],
-                user_id  = data['user'], 
-            )
-
-        print("try end")
-    except:
-        print("except")
-        pass

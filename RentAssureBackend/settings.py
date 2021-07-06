@@ -15,7 +15,8 @@ SECRET_KEY = '%pqa&19x$##0o5nglb@h3-+k67t^!==!dw0&buose!m-7m65le'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rentassure-backend.herokuapp.com', 'localhost', 'rentassure.herokuapp.com', 'rentassure-bda5e.web.app']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -124,12 +125,15 @@ MEDIA_URL= "/media/"
 AUTH_USER_MODEL = 'api.UserModel'
 
 
-CORS_ALLOW_ALL_ORIGINS=True
+# CORS_ALLOW_ALL_ORIGINS=True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "https://www.google.com",
-#     "http://localhost:3000",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "https://rentassure-backend.herokuapp.com",
+    "https://rentassure-bda5e.web.app/",
+    "https://rentassure.herokuapp.com",
+    "http://localhost:3000",
+    "http://localhost:3001",
+]
 
 CORS_ALLOW_HEADERS = [
     'accept',

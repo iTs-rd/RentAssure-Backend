@@ -129,7 +129,7 @@ AUTH_USER_MODEL = 'api.UserModel'
 
 CORS_ALLOWED_ORIGINS = [
     "https://rentassure-backend.herokuapp.com",
-    "https://rentassure-bda5e.web.app/",
+    "https://rentassure-bda5e.web.app",
     "https://rentassure.herokuapp.com",
     "http://localhost:3000",
     "http://localhost:3001",

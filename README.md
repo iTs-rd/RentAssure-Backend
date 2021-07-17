@@ -28,38 +28,22 @@ This project was build with the help of [React](https://reactjs.org) ,[Django](h
 
 ## Installation
 
-### Pre-requisites
-
-Your machine should have NPM and Node installed. A full guide for installing each of these is given below.
-Before you install any packages, ensure your package list is up to date with:
-
-    sudo apt-get update
-
-#### Install yarn
-
-    sudo apt-get install -y npm
-
-#### Install node
-
-    sudo npm cache clean -f
-    sudo npm install -g n
-    sudo n stable
-
 ## Local setup
 
 #### Clone the repo
 
-    git clone https://github.com/iTs-rd/RentAssure-Forntend.git
+    git clone https://github.com/iTs-rd/RentAssure-Backend.git
+    cd RentAssure-Backend
 
 #### Install node modules
 
-    npm install
+    pip install -r requirements.txt
 
 #### Running the server
 
-    npm start
+    python manage.py runserver
 
-Visit [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
 The app is running live at [https://rentassure.herokuapp.com](https://rentassure.herokuapp.com). Patience recommended while opening:stuck_out_tongue_closed_eyes:
 

@@ -1,5 +1,6 @@
 import os
-from .models import DataModel
+
+from api.models import DataModel
 
 # change all these before run
 # n u l l  =  None

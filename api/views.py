@@ -1,3 +1,4 @@
+import imp
 from rest_framework import status, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
@@ -10,6 +11,8 @@ from .serializers import (ContactDataSerializer, DataMiniSerializer,
                           DataSerializer, UserSerializer,
                           UserSerializerPassword)
 
+from data.add_data import add_data
+add_data()
 
 class UserViewSetPassword(viewsets.ModelViewSet):
     queryset = UserModel.objects.all()

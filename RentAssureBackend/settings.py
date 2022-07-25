@@ -24,11 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '%pqa&19x$##0o5nglb@h3-+k67t^!==!dw0&buose!m-7m65le'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = ['rentassure.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://rentassure.herokuapp.com']
+ALLOWED_HOSTS = ['rentassure.herokuapp.com','127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://rentassure.herokuapp.com','http://127.0.0.1:8000']
+CORS_ALLOWED_ORIGINS = [
+    "https://rentassure.herokuapp.com",
+]
 
 
 # Application definition
@@ -141,9 +144,6 @@ AUTH_USER_MODEL = 'api.UserModel'
 # CORS_ALLOW_ALL_ORIGINS=True
 
 
-CORS_ALLOWED_ORIGINS = [
-    "https://rentassure.herokuapp.com",
-]
 
 CORS_ALLOW_HEADERS = [
     'accept',

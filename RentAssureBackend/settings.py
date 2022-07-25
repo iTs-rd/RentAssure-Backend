@@ -28,6 +28,7 @@ DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 
 # Application definition
@@ -139,7 +140,6 @@ AUTH_USER_MODEL = 'api.UserModel'
 
 # CORS_ALLOW_ALL_ORIGINS=True
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*','*']
 
 CORS_ALLOWED_ORIGINS = [
     "https://rentassure.herokuapp.com"

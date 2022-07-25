@@ -1,10 +1,12 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.core.validators import (EmailValidator, MinLengthValidator,
+                                    int_list_validator)
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from PIL import Image
+from django.utils.crypto import get_random_string
 from django.utils.deconstruct import deconstructible
-from django.core.validators import MinLengthValidator, int_list_validator, EmailValidator
+from django.utils.translation import gettext_lazy as _
+from PIL import Image
 
 
 class BaseUserManager(models.Manager):
@@ -201,7 +203,7 @@ class DataModel(models.Model):
     available_for = models.CharField(
         max_length=20, choices=AVAILABLE_FOR_CHOICES, default='Any', blank=True)
 
-    available_from = models.DateField(blank=True)
+    available_from = models.DateField()
     rent = models.IntegerField(blank=False)
     additional_charge = models.IntegerField(default=0, blank=True)
     security_money = models.IntegerField(default=0, blank=True)
@@ -269,4 +271,3 @@ class ContactData(models.Model):
     mobile = models.CharField(max_length=10, verbose_name='Phone Number', validators=[int_list_validator(sep=' '),
                                                                                       MinLengthValidator(10)])
     detail = models.TextField(max_length=300, blank=False)
-# 00747686 ludo code

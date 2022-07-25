@@ -139,6 +139,7 @@ AUTH_USER_MODEL = 'api.UserModel'
 
 # CORS_ALLOW_ALL_ORIGINS=True
 
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*','*']
 
 CORS_ALLOWED_ORIGINS = [
     "https://rentassure.herokuapp.com"

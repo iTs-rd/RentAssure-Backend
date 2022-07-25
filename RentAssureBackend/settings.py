@@ -142,7 +142,9 @@ AUTH_USER_MODEL = 'api.UserModel'
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://rentassure.herokuapp.com"
+    "https://rentassure.herokuapp.com",
+    'http://*',
+    'https://*'
 ]
 
 CORS_ALLOW_HEADERS = [

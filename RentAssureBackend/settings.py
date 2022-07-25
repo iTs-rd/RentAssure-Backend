@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '%pqa&19x$##0o5nglb@h3-+k67t^!==!dw0&buose!m-7m65le'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,15 +134,12 @@ STATIC_URL = '/static/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
 
-# AUTH_USER_MODEL = 'api.UserModel'
 AUTH_USER_MODEL = 'api.UserModel'
 
 CORS_ALLOW_ALL_ORIGINS=True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "https://www.google.com",
-#     "http://localhost:3000",
-# ]
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
+
 
 CORS_ALLOW_HEADERS = [
     'accept',

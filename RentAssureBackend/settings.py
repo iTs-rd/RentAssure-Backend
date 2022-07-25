@@ -27,8 +27,8 @@ SECRET_KEY = '%pqa&19x$##0o5nglb@h3-+k67t^!==!dw0&buose!m-7m65le'
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
+ALLOWED_HOSTS = ['rentassure.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://rentassure.herokuapp.com']
 
 
 # Application definition
@@ -143,8 +143,6 @@ AUTH_USER_MODEL = 'api.UserModel'
 
 CORS_ALLOWED_ORIGINS = [
     "https://rentassure.herokuapp.com",
-    'http://*',
-    'https://*'
 ]
 
 CORS_ALLOW_HEADERS = [

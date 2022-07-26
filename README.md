@@ -3,6 +3,11 @@
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green"> <img src="https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray"> <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
 
 This project was build with the help of [React](https://reactjs.org) ,[Django](https://www.djangoproject.com/start/) & [Djano REST framework](https://www.django-rest-framework.org/).
+<br/>
+
+## [Live](https://rentassure-app.web.app/) | [Backend](https://rentassure-backend.herokuapp.com/) | [Backend-repo](https://github.com/iTs-rd/RentAssure-Backend) | [Frontend-repo](https://github.com/iTs-rd/RentAssure-Forntend)
+<br>
+
 
 <a href="https://rentassure.herokuapp.com/"><img src="readme_img/1.png" />
 

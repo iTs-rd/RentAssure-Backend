@@ -50,6 +50,6 @@ This project was build with the help of [React](https://reactjs.org) ,[Django](h
 
 Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
-The app is running live at [https://rentassure-bda5e.web.app/](https://rentassure-bda5e.web.app/). Patience recommended while opening:stuck_out_tongue_closed_eyes:
+The app is running live at [https://rentassure-app.web.app/](https://rentassure-app.web.app/). Patience recommended while opening:stuck_out_tongue_closed_eyes:
 
 Made in :heart: with Github & ReactJS.

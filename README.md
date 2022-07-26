@@ -9,7 +9,7 @@ This project was build with the help of [React](https://reactjs.org) ,[Django](h
 <br>
 
 
-<a href="https://rentassure.herokuapp.com/"><img src="readme_img/1.png" />
+<a href="https://rentassure-backend.herokuapp.com/"><img src="readme_img/1.png" />
 
 ## Some More Screenshots
 

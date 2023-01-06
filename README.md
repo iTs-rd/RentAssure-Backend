@@ -5,11 +5,11 @@
 This project was build with the help of [React](https://reactjs.org) ,[Django](https://www.djangoproject.com/start/) & [Djano REST framework](https://www.django-rest-framework.org/).
 <br/>
 
-## [Live](https://rentassure-app.web.app/) | [Backend](https://rentassure-backend.herokuapp.com/) | [Backend-repo](https://github.com/iTs-rd/RentAssure-Backend) | [Frontend-repo](https://github.com/iTs-rd/RentAssure-Forntend)
+<!-- ## [Live](https://rentassure-app.web.app/) | [Backend](https://rentassure-backend.herokuapp.com/) | [Backend-repo](https://github.com/iTs-rd/RentAssure-Backend) | [Frontend-repo](https://github.com/iTs-rd/RentAssure-Forntend) -->
 <br>
 
 
-<a href="https://rentassure-backend.herokuapp.com/"><img src="readme_img/1.png" />
+<a><img src="readme_img/1.png" />
 
 ## Some More Screenshots
 
@@ -50,6 +50,6 @@ This project was build with the help of [React](https://reactjs.org) ,[Django](h
 
 Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
-The app is running live at [https://rentassure-app.web.app/](https://rentassure-app.web.app/). Patience recommended while opening:stuck_out_tongue_closed_eyes:
+<!-- The app is running live at [https://rentassure-app.web.app/](https://rentassure-app.web.app/). Patience recommended while opening:stuck_out_tongue_closed_eyes: -->
 
 Made in :heart: with Github & ReactJS.

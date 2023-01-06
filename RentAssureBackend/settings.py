@@ -27,11 +27,16 @@ SECRET_KEY = '%pqa&19x$##0o5nglb@h3-+k67t^!==!dw0&buose!m-7m65le'
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['rentassure.herokuapp.com','127.0.0.1','https://rentassure-backend.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://rentassure.herokuapp.com','http://127.0.0.1:8000','https://rentassure-backend.herokuapp.com']
-CORS_ALLOWED_ORIGINS = [
-    "https://rentassure.herokuapp.com","https://rentassure-backend.herokuapp.com",
-]
+# ALLOWED_HOSTS = ['rentassure.herokuapp.com','127.0.0.1','https://rentassure-backend.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_ALL_ORIGINS=True
+
+
+# CSRF_TRUSTED_ORIGINS = ['https://rentassure.herokuapp.com','http://127.0.0.1:8000','https://rentassure-backend.herokuapp.com']
+# CORS_ALLOWED_ORIGINS = [
+#     "https://rentassure.herokuapp.com","https://rentassure-backend.herokuapp.com",
+# ]
 
 
 # Application definition
